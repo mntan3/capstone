@@ -4,7 +4,7 @@
 	</head>
 	
 	<body>
-		<form action="search.php" method="get">
+		<form action="search.php" method="get" autocomplete="off">
 			Search engine:<input type="text" name="value" placeholder="Search Anything here">
 			<input type="submit" name="search" value="Search Now">
 		</form>
@@ -28,6 +28,41 @@
 			if(isset($_GET['search'])) {
 				
 				$search_value = $_GET['value'];
+
+				$tok = strtok($search_value, " \n\t");
+
+				$language = "null";
+				$command = "null";
+				while($tok !== false) {
+					$allLang = fopen("languages.txt", "r") or die("Unable to open file!");
+					$allCommands = fopen("commands.txt", "r") or die("Unable to open file!");
+					$currWord = strtolower(trim($tok));
+					//echo $currWord;
+					while(!feof($allLang)) {
+						$curr = strtolower(trim(fgets($allLang)));
+						//echo $curr.$currWord."</br>" ;
+						if($curr == $currWord)
+						{
+							//echo "INNNN";
+							$language = $curr;
+						}
+						//echo $curr;
+					}
+					while(!feof($allCommands)) {
+						$curr = strtolower(trim(fgets($allCommands)));
+						//echo $curr.$currWord."</br>";
+						if($curr == $currWord)
+						{
+							//echo "INN2";
+							$command = $curr;
+						}
+						//echo $curr;
+					}
+					$tok = strtok(" \n");
+				}
+				echo "language: ".$language;
+				echo "command: ".$command;
+
 				//echo "<br>You searched for: $search_value";
 				$query = "select * from sites where site_keywords like '%$search_value%'";
 				//echo "<br>Your query is: $query";
