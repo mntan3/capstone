@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block heading %}
+	<div class="jumbo">
+		<h2>Welcome to ____<h2>
+		<h3>
+			<form autocomplete="off" action="{{ url_for('content') }}"	method="post">
+				Search:
+				<input type="text" name="value" placeholder="Search Anything here">
+				<input type="submit" name="search" value="Search Now">
+			</form>
+		</h3>
+	</div>
+{% endblock %}
+
+
