@@ -1,5 +1,0 @@
-Installation
-Hello World
-Hello
-World
-While Loop
