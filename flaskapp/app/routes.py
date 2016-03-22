@@ -1,5 +1,5 @@
 #imports
-import os
+import search
 from sqlite3 import dbapi2 as sqlite3
 from flask import Flask, render_template, session, g, redirect, url_for, \
         abort, flash, request
@@ -62,8 +62,8 @@ def content():
     searchvalue = request.form.get('value')
     db = get_db()
     cur = db.execute('select title from sites order by id desc')
-    entries = cur.fetchall()
-    return render_template('content.html', entries=entries, searchvalue=searchvalue)
+    #entries = cur.fetchall()
+    return render_template('content.html', searchvalue=searchvalue)
 
 @app.route('/about')
 def about():
