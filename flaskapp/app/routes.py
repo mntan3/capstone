@@ -61,9 +61,17 @@ def home():
 def content():
     searchvalue = request.form.get('value')
     db = get_db()
-    cur = db.execute('select title from sites order by id desc')
-    #entries = cur.fetchall()
-    return render_template('content.html', searchvalue=searchvalue)
+    language = search.get_language( searchvalue )
+    command = search.get_command( searchvalue )
+    cur=''
+    if language and command:
+        cur = db.execute("select title from sites where key_language = '{0}' AND key_command = '{1}'".format(language,command))
+    elif language:
+        cur = db.execute("select title from sites where key_language = '{0}' AND key_command = ''".format(language))
+    elif command:
+        cur = db.execute("select title from sites where key_command = '{0}' AND key_language = ''".format(command))
+    entries = cur.fetchall()
+    return render_template('content.html', entries = entries)
 
 @app.route('/about')
 def about():
