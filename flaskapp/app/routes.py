@@ -1,5 +1,6 @@
 #imports
-import search
+import search, subprocess
+from subprocess import call
 from sqlite3 import dbapi2 as sqlite3
 from flask import Flask, render_template, session, g, redirect, url_for, \
         abort, flash, request
@@ -43,6 +44,7 @@ def init_db():
 
 def get_db():
     """Opens database connection if there isn't one"""
+    subprocess.call("sqlite3 /tmp/flaskr.db < schema.sql", shell=True)
     if not hasattr(g, 'sqlite_db'):
         g.sqlite_db = connect_db()
     return g.sqlite_db
@@ -65,11 +67,11 @@ def content():
     command = search.get_command( searchvalue )
     cur=''
     if language and command:
-        cur = db.execute("select title from sites where key_language = '{0}' AND key_command = '{1}'".format(language,command))
+        cur = db.execute("select * from sites where key_language = '{0}' AND key_command = '{1}'".format(language,command))
     elif language:
-        cur = db.execute("select title from sites where key_language = '{0}' AND key_command = ''".format(language))
+        cur = db.execute("select * from sites where key_language = '{0}' AND key_command = ''".format(language))
     elif command:
-        cur = db.execute("select title from sites where key_command = '{0}' AND key_language = ''".format(command))
+        cur = db.execute("select * from sites where key_command = '{0}' AND key_language = ''".format(command))
     entries = cur.fetchall()
     return render_template('content.html', entries = entries)
 

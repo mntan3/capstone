@@ -1,11 +1,23 @@
 {% extends "layout.html" %}
+{% block heading %}
+	<div class="jumbo">
+		<h3>
+			<form autocomplete="off" action="{{url_for('content') }}" method="post">
+				Search:
+				<input type="text" name="value" placeholder="Search Anything here">
+				<input type="submit" name="search" value="Search Now">
+			</form>
+		</h3>
+	</div>
+{% endblock %}
 {% block content %}
 	<ul class=entries>
 		{% for entry in entries %}
 			<li><h2>{{ entry.title}}</h2>
+				<!--#include file="../static/includes/java_helloworld.html" -->
 		{% else %}
 			<li><em>No entries here yet</em>
 		{% endfor %}
 	</ul>
-	<h2>{{searchvalue}}<h2>
 {% endblock %}
+

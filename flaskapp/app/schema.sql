@@ -4,7 +4,7 @@ create table sites (
 	title text,
 	key_command text,
 	key_language text,
-	content text
+	content_path text
 );
 
 
@@ -13,7 +13,7 @@ insert into sites values(2, 'Python','','python', 'General information about Pyt
 insert into sites values(3, 'c++','','c++', 'General information about c++');
 insert into sites values(4, 'Javascript','','javascript','General information about Javascript');
 
-insert into sites values(5, 'Hello World in Java', 'hello world', 'java', '');
+insert into sites values(5, 'Hello World in Java', 'hello world', 'java', '../static/includes/java_helloworld.html');
 insert into sites values(6, 'Hello World in Python', 'hello world', 'python', '');
 insert into sites values(7, 'Hello World in c++', 'hello world', 'c++', '');
 insert into sites values(8, 'Hello World in Javascript', 'hello world', 'javascript', '');
