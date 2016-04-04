@@ -13,8 +13,9 @@
 {% block content %}
 	<ul class=entries>
 		{% for entry in entries %}
-			<li><h2>{{ entry.title}}</h2>
-				<!--#include file="../static/includes/java_helloworld.html" -->
+			<h2>{{ entry.title}}</h2>
+			{% include entry.content_path %}
+			{{entry.notes}}
 		{% else %}
 			<li><em>No entries here yet</em>
 		{% endfor %}
