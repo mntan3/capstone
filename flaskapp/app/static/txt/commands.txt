@@ -1,3 +1,13 @@
 hello world
 installation
 while loop
+for loop
+execute
+comments
+data type
+function
+syntax
+file input
+file output
+console input
+console output
