@@ -12,7 +12,7 @@ echo "$num"
 for i in `cat ./static/txt/languages.txt`
 do
 echo $i
-echo "insert into sites values($num, '$command in $i', '$command', '$i', './includes/${i}_${tcomm}.html','')" >> ./schema.sql
+echo "insert into sites values($num, '$command in $i', '$command', '$i', './includes/${i}_${tcomm}.html','');" >> ./schema.sql
 echo 'Page under development ' >> ./templates/includes/${i}_${tcomm}.html
 num=$((num+1))
 done

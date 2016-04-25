@@ -72,6 +72,8 @@ def content():
         cur = db.execute("select * from sites where key_language = '{0}' AND key_command = ''".format(language))
     elif command:
         cur = db.execute("select * from sites where key_command = '{0}' AND key_language = ''".format(command))
+    else:
+        cur = db.execute("select * from sites where key_command = 'None' AND key_language = 'None'")
     entries = cur.fetchall()
     return render_template('content.html', entries = entries)
 
