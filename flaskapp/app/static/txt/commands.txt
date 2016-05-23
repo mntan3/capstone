@@ -3,7 +3,7 @@ installation
 while loop
 for loop
 execute
-comment
+comments
 data type
 function
 syntax
